@@ -15,6 +15,31 @@
 		
 	</properties>
 	
+    <scm>
+        <developerConnection>scm:git:https://github.com/nerdest/HelloSpringMVC.git</developerConnection>
+    </scm>
+	
+	<repositories>
+		<repository>
+            <id>artifactory-or-nexus-id</id>
+            <name>artifactory-or-nexus-name</name>
+            <url>http://url:8081/public</url>
+        </repository>
+	</repositories>
+	
+    <distributionManagement>
+        <repository>
+            <id>artifactory-or-nexus-id</id>
+            <name>artifactory-or-nexus-name</name>
+            <url>http://url:8081/release/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>artifactory-or-nexus-id</id>
+            <name>artifactory-or-nexus-name-for-snapshots</name>
+            <url>http://url:8081/nexus/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 	<dependencies>
 
 		<!-- Spring MVC framework -->
@@ -117,7 +142,17 @@
 					<password>${tomcat.pass}</password>
 				</configuration>
 			</plugin>
-			
+		
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <tagNameFormat> </tagNameFormat>
+                    <scmCommentPrefix>test release</scmCommentPrefix>
+                </configuration>
+            </plugin>
+	
 		</plugins>
 		
 	</build>
